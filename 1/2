@@ -1,0 +1,36 @@
+2. Show that sum [ x ] = x for any number x .
+
+
+sum [ x ] = x
+
+Definition:
+	sum [] = 0
+	sum (x:xs) = x + sum xs
+
+Lets try by induction?
+
+1) Show base case - empty set []
+   sum [] = 0
+	
+	True by our constraint.  And 0 is itentity of sum operations x + 0 = 0
+
+2) Show for [x] = [1]
+	
+	sum [1] =
+		1 + sum []
+		1 + 0
+		1
+
+3) Inductive step, Show if works  for [X] X = x_1 .. x_n, then works for x_(n+1)
+
+	x_1 + sum [x_3..x_n]
+	x_1 + x_2 + sum [x_3..x_n]
+	x_1 + ... x_n
+
+	sum [x_1..x_(n+1) ] = sum[x_1..x_n] + x_(n+1)
+	.....
+	x_1 + .. x_(n+1) =  x_1 + .. + x_n + x(n+1)
+ 
+
+ LHS=RHS, QED
+	

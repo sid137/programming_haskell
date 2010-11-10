@@ -1,0 +1,33 @@
+4. How should the deﬁnition of the function qsort be modiﬁed so that it
+produces a reverse sorted version of a list?
+
+
+Original qsort:
+
+	qsort x =
+		qsort [] = []
+		qsort (x:xs) = qsort smaller ++ [x] ++ qsort larger
+						where
+							smaller = [a | a <- xs, a <= x]
+							larger =  [b | b <- xs, b > x]
+
+
+Reverse sort definition:
+
+	rqsort x = 
+		rqsort [] = []
+		rqsort (x:xs) rqsort larger ++ [x] ++ smaller
+						where 
+							smaller  = [a | a <- xs, a <= x]
+							larger 	 = [b | b <- xs, b > x]
+
+
+Testing:
+
+	rqsort [3, 5, 1, 4, 2] = 
+		rqsort [5, 4] ++ [3] ++ rqsort [1, 2]
+		(rqsort [5] ++ [4] ++ rqsort[]) ++ [3] ++ (rqsort [2] ++ [1] ++ rqsort [])
+		((rqsort [] ++ [5] ++ rqsort []) ++ [4] ++ []) ++ [3] ++ (rqsort [] ++[2] ++ rqsort [] ++ [1] ++ [])
+		(([] ++ [5] ++ []) ++ [4] ++ []) ++ [3] ++ ([] ++ [2] ++ [] ++1[2] ++ [])
+		([5]) ++ [4] ++ [3] ++ [2] ++ [1]
+		[5,4,3,2,1]

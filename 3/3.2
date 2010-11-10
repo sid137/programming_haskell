@@ -1,0 +1,19 @@
+2. What are the types of the following functions?
+
+	second xs = head (tail xs)
+	swap (x , y) = (y, x )
+	pair x y = (x , y)
+	double x = x ∗2
+	palindrome xs = reverse xs == xs
+	twice f x = f (f x )
+
+Hint: take care to include the necessary class constraints if the functions are
+deﬁned using overloaded operators.
+
+[a] -> a
+(a, b) -> (b, a)
+a -> b -> (a,b)
+Num a => a -> a  
+[a] -> Bool  //  Eq a => [a] -> Bool
+a -> ( a -> a ) 
+

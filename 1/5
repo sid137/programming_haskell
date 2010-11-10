@@ -1,0 +1,32 @@
+5. What would be the effect of replacing ≤ by < in the deﬁnition of qsort ?
+Hint: consider the example qsort [2, 2, 3, 1, 1].
+
+
+Original qsort:
+
+	qsort x =
+		qsort [] = []
+		qsort (x:xs) = qsort smaller ++ [x] ++ qsort larger
+						where
+							smaller = [a | a <- xs, a <= x]
+							larger =  [b | b <- xs, b > x]
+
+
+Modified sort definition:
+
+	qsort x =
+		qsort [] = []
+		qsort (x:xs) = qsort smaller ++ [x] ++ qsort larger
+						where
+							smaller = [a | a <- xs, a < x]
+							larger =  [b | b <- xs, b > x]
+
+
+Testing:
+	
+	qsort [2, 2, 3, 1, 1] =
+		qsort [1, 1] ++ [2] ++ qsort[3]
+		(qsort [] ++ [1] + qsort [])  ++ [2] ++ (qsort[] ++ [3] ++  qsort [])
+		[1, 2, 3]
+
+		It looks like it would perform a unique sort of the objects (sort -u)
